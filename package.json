@@ -6,7 +6,7 @@
   "main": "dist/loader.js",
   "files": [
     "dist",
-    "compile"
+    "compile.js"
   ],
   "repository": {
     "type": "git",
