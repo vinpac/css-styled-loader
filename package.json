@@ -1,0 +1,56 @@
+{
+  "name": "css-styled-loader",
+  "version": "0.0.0-beta.1",
+  "author": "Vinicius Pacheco Furtado <vin175pacheco@gmail.com>",
+  "description": "Loader that modularize, export and enables easy theming css",
+  "main": "dist/loader.js",
+  "files": [
+    "dist",
+    "compile"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:vinpac/css-styled-loader.git"
+  },
+  "license": "MIT",
+  "jest": {
+    "watchPathIgnorePatterns": [
+      "<rootDir>/tmp/"
+    ]
+  },
+  "scripts": {
+    "lint": "$(npm bin)/eslint src",
+    "pretest": "$(npm bin)/eslint src",
+    "clean": "rimraf dist",
+    "test": "$(npm bin)/jest",
+    "test:watch": "$(npm bin)/jest --watch",
+    "transpile": "rimraf dist && $(npm bin)/babel src -d dist",
+    "prepublish": "npm run transpile"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.44",
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-flow": "^7.0.0-beta.44",
+    "@babel/preset-stage-2": "^7.0.0-beta.44",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.3",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "flow-bin": "^0.70.0",
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.3",
+    "prettier": "^1.11.1",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "css-selector-tokenizer": "^0.7.0",
+    "cssnano": "^3.10.0",
+    "loader-utils": "^1.1.0",
+    "postcss": "^6.0.21",
+    "postcss-modular": "^0.0.11",
+    "string-hash": "^1.1.3"
+  }
+}
