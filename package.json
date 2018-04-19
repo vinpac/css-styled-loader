@@ -1,5 +1,5 @@
 {
-  "name": "css-styled-loader",
+  "name": "styled-css-loader",
   "version": "0.0.0-beta.1",
   "author": "Vinicius Pacheco Furtado <vin175pacheco@gmail.com>",
   "description": "Loader that modularize, export and enables easy theming css",
@@ -10,7 +10,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:vinpac/css-styled-loader.git"
+    "url": "git@github.com:vinpac/styled-css-loader.git"
   },
   "license": "MIT",
   "jest": {

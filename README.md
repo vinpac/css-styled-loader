@@ -56,19 +56,3 @@ const Home = () => (
 )
 
 ```
-
-## Usage with react
-```jsx
-import React from 'react'
-import Style, { withStyles } from 'next-styled-css'
-import s, { sheet } from './home.css'
-
-const Home = () => (
-  <div>
-    <Style sheet={sheet} />
-
-  </div>
-)
-
-// Component[, sheet[, variables]]
-export default withStyles(Home)
