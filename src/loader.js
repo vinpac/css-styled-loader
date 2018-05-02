@@ -14,6 +14,7 @@ module.exports = function cssLoader(rawCSS, map) {
 
   const callback = this.async()
   const options = loaderUtils.getOptions(this) || {}
+
   const fromValue = `/css-loader/${loaderUtils
     .getRemainingRequest(this)
     .split('!')
@@ -49,12 +50,38 @@ module.exports = function cssLoader(rawCSS, map) {
           var css = ${result.cssJS}
           exports.default = ${JSON.stringify(result.translations)};
           exports.sheet = {
-            id: "${stringHash(result.cssJS)}",
+            id: "${stringHash(fromValue)}",
             css: css,
             matches: require(${loaderUtils.stringifyRequest(
               this,
               `${isTest ? '' : '!'}${path.resolve(__dirname, '..', 'dist', 'create-matches')}`,
             )}).default(css)
+          };
+          ${
+            options.hmr
+              ? `
+          var updatedCSS;
+
+          if (window.STYLED_CSS_DEV$ON_SHEET_CHANGE && updatedCSS !== exports.sheet.css) {
+            updatedCSS = exports.sheet.css;
+            window.STYLED_CSS_DEV$ON_SHEET_CHANGE(exports.sheet);
+          }
+
+          ;(function (sheet) {
+            if(!sheet) return
+            if (!module.hot) return
+            module.hot.accept()
+            if (module.hot.status() === 'idle') return
+            if (window.STYLED_CSS_DEV$ON_SHEET_CHANGE && updatedCSS !== sheet.css) {
+              updatedCSS = sheet.css;
+              window.STYLED_CSS_DEV$ON_SHEET_CHANGE(sheet);
+            }
+          })(typeof __webpack_exports__ !== 'undefined'
+            ? __webpack_exports__.sheet
+            : (exports.sheet || module.exports.sheet || module.exports)
+          );
+          `
+              : ''
           }
         `,
       )

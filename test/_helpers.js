@@ -6,7 +6,7 @@ export function runLoader(loader, input, map, options, callback) {
     {
       callback,
       async: () => callback,
-      options: Object.assign(
+      query: Object.assign(
         {
           resolve: {
             alias: {
