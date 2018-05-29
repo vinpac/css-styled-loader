@@ -11,6 +11,7 @@ export default function createMatches(css) {
       if (css[n] !== '\t' && css[n] !== ' ') {
         str += css[n]
 
+        // If variables is wrapped with var(), ignore it
         if (css[n] !== '(' && css[n] !== 'v' && css[n] !== 'a' && css[n] !== 'r') {
           break
         }

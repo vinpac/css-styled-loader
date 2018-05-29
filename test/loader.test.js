@@ -25,20 +25,25 @@ describe('Loader', () => {
   it('should compile and run the script', async () => {
     const result = await parse(
       `
-        .className1 { color: --color-primary; }
+        .className1--modifier > .className2 { color: --color-primary; }
         .className2 { color: --color-accent; }
       `,
       null,
-      { sourceMap: true },
+      { sourceMap: true, production: true },
     )
 
     const filepath = await writeTemp(result)
-    const { sheet } = require(filepath)
+    const { default: translations, sheet } = require(filepath)
+
+    expect(translations).toEqual({
+      'className1--modifier': '_6wd1o-u',
+      className2: 'v3t16',
+    })
     expect(sheet).toEqual({
       id: '1651403073',
       css:
-        '\n        ._className1_1c124_9l { color: --color-primary; }\n        ._className2_v3t16_ { color: --color-accent; }\n      ',
-      matches: [[40, 15], [96, 14]],
+        '\n        ._6wd1o-u > .v3t16 { color: --color-primary; }\n        .v3t16 { color: --color-accent; }\n      ',
+      matches: [[37, 15], [80, 14]],
     })
   })
 

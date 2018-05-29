@@ -3,6 +3,7 @@ import loaderUtils from 'loader-utils'
 import stringHash from 'string-hash'
 import processCSS from './process-css'
 import createPathResolver from './create-path-resolver'
+import createScopedNameGenerator from './create-scoped-name-generator'
 
 const globalStore = {}
 const isTest = process.env.NODE_ENV === 'test'
@@ -32,6 +33,7 @@ module.exports = function cssLoader(rawCSS, map) {
       store: globalStore,
       extension: options.extension || '.css',
       sourceMap: options.sourceMap || false,
+      generateScopedName: createScopedNameGenerator(options),
       resolvePath: createPathResolver(this, fromValue),
       // As webpack imports in not standart sort
       useNoImported: 'ignore',
