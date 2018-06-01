@@ -1,10 +1,6 @@
 {
   "name": "styled-css-loader",
-<<<<<<< HEAD
-  "version": "0.0.0-beta.8",
-=======
-  "version": "0.0.0-beta.4",
->>>>>>> 4c49fa2f8955cb0a026ea4440e04b719db0f5087
+  "version": "0.0.0-beta.10",
   "author": "Vinicius Pacheco Furtado <vin175pacheco@gmail.com>",
   "description": "Loader that modularize, export and enables easy theming css",
   "main": "dist/loader.js",

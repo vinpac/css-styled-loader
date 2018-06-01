@@ -6,7 +6,6 @@ import createPathResolver from './create-path-resolver'
 import createScopedNameGenerator from './create-scoped-name-generator'
 
 const globalStore = {}
-const isTest = process.env.NODE_ENV === 'test'
 
 module.exports = function cssLoader(rawCSS, map) {
   if (this.cacheable) {
@@ -56,7 +55,7 @@ module.exports = function cssLoader(rawCSS, map) {
             css: css,
             matches: require(${loaderUtils.stringifyRequest(
               this,
-              `${isTest ? '' : '!'}${path.resolve(__dirname, '..', 'dist', 'create-matches')}`,
+              `${path.resolve(__dirname, '..', 'dist', 'create-matches')}`,
             )}).default(css)
           };
           ${
